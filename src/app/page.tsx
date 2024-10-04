@@ -13,36 +13,24 @@ const cardActions: ReactNode[] = [
   </Row>
 ];
 
-const dataA = [
-  { type: 'Category 1', value: 38 },
-  { type: 'Category 2', value: 52 },
-  { type: 'Category 3', value: 61 },
-  { type: 'Category 4', value: 145 },
-  { type: 'Category 5', value: 48 },
-  { type: 'Category 6', value: 38 },
-  { type: 'Category 7', value: 38 },
-];
+export default async function Home() {
+  const casesFetch = await fetch('https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_cases_casesByDay?page=1&page_size=100');
+  const casesResult = await casesFetch.json();
+  const casesData = casesResult.results;
 
-const dataB = [
-  { type: 'Category 1', value: 38 },
-  { type: 'Category 2', value: 52 },
-  { type: 'Category 3', value: 61 },
-  { type: 'Category 4', value: 145 },
-  { type: 'Category 5', value: 48 },
-  { type: 'Category 6', value: 38 },
-  { type: 'Category 7', value: 38 },
-];
+  const deathsFetch = await fetch('https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_deaths_ONSByDay?page=1&page_size=100');
+  const deathsResult = await deathsFetch.json();
+  const deathsData = deathsResult.results;
 
-export default function Home() {
   return (
     <Layout className={styles.page}>
       <Header className={styles.header}>
-        <Title level={4}>App title</Title>
+        <Title level={4}>Covid 19</Title>
       </Header>
       <Content className={styles.content}>
         <Row justify="space-between" style={{paddingBottom: '15px'}}>
           <Col>
-            <Title level={4}>Page title</Title>
+            <Title level={4}>Charts</Title>
           </Col>
           <Col>
             <Row gutter={16}>
@@ -61,13 +49,13 @@ export default function Home() {
 
         <Row gutter={24}>
           <Col span={12}>
-            <Card title="Chart A" bordered={false} actions={cardActions}>
-              <ColumnChart data={dataA} chartId="chartA"/>
+            <Card title="Cases by day" bordered={false} actions={cardActions}>
+              <ColumnChart data={casesData} chartId="casesChart"/>
             </Card>
           </Col>
           <Col span={12}>
-            <Card title="Chart B" bordered={false} actions={cardActions}>
-              <ColumnChart data={dataB} chartId="chartB" />
+            <Card title="Deaths by day" bordered={false} actions={cardActions}>
+              <ColumnChart data={deathsData} chartId="deathsChart" />
             </Card>
           </Col>
         </Row>
