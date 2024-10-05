@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Chart } from '@antv/g2';
 
 type P = {
-  data: { date: string, metric_value: number}[];
+  data: { date: string, metric_value: number }[];
   chartId: string;
 }
 
@@ -14,9 +14,9 @@ const ColumnChart = ({ data, chartId }: P) => {
       autoFit: true,
       height: 500,
     });
-  
+
     chart.data(data);
-  
+
     chart
       .line()
       .encode('x', 'date')

@@ -1,12 +1,12 @@
 import { prisma } from './prisma';
 
 export const createContext = async () => {
-    return {
-      prisma,
-    };
+  return {
+    prisma,
   };
+};
 
-  export type Context = typeof createContext;
+export type Context = typeof createContext;
 
 
 
