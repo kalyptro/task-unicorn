@@ -38,7 +38,7 @@ export const appRouter = router({
           },
         });
         
-        return chartData?.liked;
+        return chartData?.liked || false;
       }),
 });
 
