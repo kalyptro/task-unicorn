@@ -5,6 +5,7 @@ import { Content, Header } from "antd/es/layout/layout";
 import Title from "antd/es/typography/Title";
 import ColumnChart from "./_components/ColumnChart";
 import { ReactNode } from "react";
+import HeartToggleButton from "./_components/HeartToggleButton";
 
 const cardActions: ReactNode[] = [
   <Row justify="space-between" style={{padding: '10px'}}>
@@ -13,7 +14,7 @@ const cardActions: ReactNode[] = [
   </Row>
 ];
 
-export default async function Home() {
+export default async function Page() {
   const casesFetch = await fetch('https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/respiratory/topics/COVID-19/geography_types/Nation/geographies/England/metrics/COVID-19_cases_casesByDay?page=1&page_size=100');
   const casesResult = await casesFetch.json();
   const casesData = casesResult.results;
@@ -49,12 +50,12 @@ export default async function Home() {
 
         <Row gutter={24}>
           <Col span={12}>
-            <Card title="Cases by day" bordered={false} actions={cardActions}>
+            <Card title="Cases by day" extra={<HeartToggleButton entityId="casesChart" />} bordered={false} actions={cardActions}>
               <ColumnChart data={casesData} chartId="casesChart"/>
             </Card>
           </Col>
           <Col span={12}>
-            <Card title="Deaths by day" bordered={false} actions={cardActions}>
+            <Card title="Deaths by day" extra={<HeartToggleButton entityId="deathsChart" />} bordered={false} actions={cardActions}>
               <ColumnChart data={deathsData} chartId="deathsChart" />
             </Card>
           </Col>
