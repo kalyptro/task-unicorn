@@ -18,7 +18,7 @@ export default function TrpcProvider({ children }: P) {
   const url =
     process.env.NEXT_PUBLIC_APP_DOMAIN &&
       !process.env.NEXT_PUBLIC_APP_DOMAIN.includes("localhost")
-      ? `https://${process.env.NEXT_PUBLIC_APP_DOMAIN}/api/trpc/`
+      ? `https://www.${process.env.NEXT_PUBLIC_APP_DOMAIN}/api/trpc/`
       : "http://localhost:3000/api/trpc/";
 
   const [trpcClient] = useState(() =>
