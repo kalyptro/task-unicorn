@@ -22,6 +22,14 @@ const ColumnChart = ({ data, chartId }: P) => {
       .encode('x', 'date')
       .encode('y', 'metric_value')
 
+    chart.axis('y', {
+      title: 'Amount',
+    });
+
+    chart.axis('x', {
+      title: 'Date',
+    });
+
     chart.render();
 
     return () => {
